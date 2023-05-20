@@ -77,10 +77,11 @@
                             <tr>
                               <th>ID</th>
                               <th>Monto</th>
-                              <th>Secretaria</th>
+                              <th>Estudiante</th>
+                              <!-- <th>Secretaria</th> -->
                               <th>Fecha de Matricula</th>
                               <th>Cronograma</th>
-							  <th>Salon</th>
+							  <th>Grado</th>
 							  <th>Accion</th>
                             </tr>
                           </thead>
@@ -88,7 +89,8 @@
 							<tr th:each="matricula:${listaMatricula}">
 			<td th:text="${matricula.idmatricula}" class="text-center"></td>
 			<td th:text="${matricula.pago.monto}" class="text-center"></td>
-			<td th:text="${#strings.concat(matricula.secretaria.nombre,' ',matricula.secretaria.apePat)}" class="text-center"></td>
+			<td th:text="${#strings.concat(matricula.pago.estudiante.apepat,' ',matricula.pago.estudiante.apemat,' ',matricula.pago.estudiante.nombre)}" class="text-center"></td>
+			<!-- <td th:text="${#strings.concat(matricula.secretaria.nombre,' ',matricula.secretaria.apePat)}" class="text-center"></td> -->
 			<td th:text="${matricula.fechamatricula}" class="text-center"></td>
 			<td th:text="${matricula.cronograma}" class="text-center"></td>
 			<td th:text="${matricula.salon.grado}" class="text-center"></td>
@@ -111,7 +113,7 @@
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. Todos los derechos reservados.</span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023. Todos los derechos reservados.</span>
           </div>
           
         </footer> 
