@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.springboot.model.Estudiante;
 import com.springboot.model.Rol;
 import com.springboot.model.Usuario;
 import com.springboot.service.UsuarioService;
@@ -24,6 +25,13 @@ public class ControllerUsuario {
 		List<Usuario>lista=service.listAll();
 		modelo.addAttribute("listaUsuarios", lista);
 		return "listadousuario";
+	}
+	
+	@GetMapping("/usuarios")
+	public String index2(Model model) {
+	    List<Usuario> listaUsuarios = service.listAll();
+	    model.addAttribute("listaUsuarios", listaUsuarios);
+	    return "principal";
 	}
 	
 	@GetMapping("/agregarUsuario")

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:fragment="html_navbar">
+	<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" th:href="@{/}"><img src="images/logo.png" class="mr-2" alt="logo"/>
+        </a>
+        <a class="navbar-brand brand-logo-mini" th:href="@{/}"><img src="images/logo-mini.svg" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-center">
+      	<a>
+			<div sec:authorize="isAuthenticated()">
+				Bienvenido al Sistema: <span sec:authentication="name">Username</span>
+				&nbsp;
+				<b sec:authentication="principal.authorities">Rol</b>
+			</div>
+		</a>
+		<form th:action="@{/logout}" method="post" style="margin-left: 50em;">
+			<input type="submit" value="Cerrar Sesion" class="btn btn-danger">
+		</form>
+      </div>
+    </nav>
+	</div>
+	
+	<div th:fragment="html_sidebar">
+	<nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/menu}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Index</span>
+            </a>
+          </li>
+          <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN')">
+            <a class="nav-link" th:href="@{/listaUsuarios}">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">Usuarios</span>
+            </a>
+          </li>
+          <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN')">
+            <a class="nav-link" th:href="@{/listarCajero}">
+              <i class="ti-user menu-icon"></i>
+              <span class="menu-title">Cajeros</span>
+            </a>
+          </li>
+          <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN')">
+            <a class="nav-link" th:href="@{/listardoc}">
+              <i class="ti-user menu-icon"></i>
+              <span class="menu-title">Docentes</span>
+            </a>
+          </li>
+          <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN')">
+            <a class="nav-link" th:href="@{/listar}">
+              <i class="ti-user menu-icon"></i>
+              <span class="menu-title">Secretarias</span>
+            </a>
+          </li>
+          <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN','CAJERO')">
+            <a class="nav-link" th:href="@{/listarApo}">
+              <i class="ti-user menu-icon"></i>
+              <span class="menu-title">Apoderados</span>
+            </a>
+          </li>
+          <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN','CAJERO')">
+            <a class="nav-link" th:href="@{/listarestu}">
+              <i class="ti-user menu-icon"></i>
+              <span class="menu-title">Estudiantes</span>
+            </a>
+          </li>
+          <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN','CAJERO')">
+            <a class="nav-link" th:href="@{/listadoPago}">
+              <i class="ti-money menu-icon"></i>
+              <span class="menu-title">Pagos</span>
+            </a>
+          </li>
+          <li class="nav-item"  sec:authorize="hasAnyAuthority('ADMIN','SECRETARIA')">
+            <a class="nav-link" th:href="@{/listarSal}">
+              <i class="ti-bookmark-alt menu-icon"></i>
+              <span class="menu-title">Salones</span>
+            </a>
+          </li>
+          <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN','SECRETARIA')">
+            <a class="nav-link" th:href="@{/Matriculas}">
+              <i class="ti-id-badge menu-icon"></i>
+              <span class="menu-title">Matriculas</span>
+            </a>
+          </li>
+          
+        </ul>
+    </nav>
+	</div>
+</body>
+</html>

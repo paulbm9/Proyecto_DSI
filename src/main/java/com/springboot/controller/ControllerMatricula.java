@@ -47,6 +47,13 @@ public class ControllerMatricula {
 		return "listarmatriculas";
 	}
 	
+	@GetMapping("/matricula")
+	public String index1(Model model) {
+	    List<Matricula> listaMatricula = servicematricula.listarTodos();
+	    model.addAttribute("listaMatricula", listaMatricula);
+	    return "principal";
+	}
+	
 	@GetMapping("/nuevaMat")
 	public String nuevo(Model modelo) {
 		List<Pago>listapago = servicepago.listarTodos();
