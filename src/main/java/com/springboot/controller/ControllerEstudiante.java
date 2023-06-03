@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.springboot.model.Apoderado;
 import com.springboot.model.Estudiante;
+import com.springboot.model.Matricula;
 import com.springboot.service.ApoderadoService;
 import com.springboot.service.EstudianteService;
 
@@ -32,6 +33,17 @@ public class ControllerEstudiante {
 		return "listadoestudiante";
 		
 	}
+	
+	@GetMapping("/estudiante")
+	public String index2(Model model) {
+	    List<Estudiante> listaEstudiante = serviceestudiante.listarTodos();
+	    model.addAttribute("listaEstudiante", listaEstudiante);
+	    return "principal";
+	}
+	
+	
+	
+	
 	@GetMapping("/nuevoe")
 	public String nuevoe(Model modelo) {
 		

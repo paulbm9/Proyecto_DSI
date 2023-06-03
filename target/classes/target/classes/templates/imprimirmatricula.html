@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Impresion Matricula</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" media="all">
+</head>
+<body onload="window.print()">
+	<h1>Ficha de Matrícula</h1>
+	<table th:each="mat:${listaMatri}" style="font-size: 18px;width: 50%;">
+		<tr>
+			<td><b>Fecha de la Matrícula:</b></td>
+			<td th:text="${mat.fechamatricula}"></td>
+		</tr>
+	</table>
+	<table th:each="mat:${listaMatri}" style="font-size: 18px;">
+		<tr>
+			<td><b>Datos del Estudiante:</b></td>
+		</tr>
+		<tr>
+			<td align="center">Apellido Paterno</td>
+			<td align="center">Apellido Materno</td>
+			<td align="center">Nombres</td>
+			<td align="center">Fecha de Nacimiento</td>
+		</tr>
+		<tr>
+			<td th:text="${mat.pago.estudiante.apepat}" align="center"></td>
+			<td th:text="${mat.pago.estudiante.apemat}" align="center"></td>
+			<td th:text="${mat.pago.estudiante.nombre}" align="center"></td>
+			<td th:text="${mat.pago.estudiante.fechadenac}" align="center"></td>
+		</tr>
+		<tr>
+			<td align="center">Direccion</td>
+			<td align="center">Distrito</td>
+			<td align="center">Provincia</td>
+			<td align="center">Departmento</td>
+		</tr>
+		<tr>
+			<td th:text="${mat.pago.estudiante.direccion}" align="center"></td>
+			<td th:text="${mat.pago.estudiante.distrito}" align="center"></td>
+			<td align="center">Lima</td>
+			<td align="center">Lima</td>
+		</tr>
+	</table>
+	<table th:each="mat:${listaMatri}" style="font-size: 18px;">
+		<tr>
+			<td><b>Datos del Apoderado:</b></td>
+		</tr>
+		<tr>
+			<td align="center">Apellido Paterno</td>
+			<td align="center">Apellido Materno</td>
+			<td align="center">Nombres</td>
+		</tr>
+		<tr>
+			<td th:text="${mat.pago.apoderado.apepat}" align="center"></td>
+			<td th:text="${mat.pago.apoderado.apemat}" align="center"></td>
+			<td th:text="${mat.pago.apoderado.nombre}" align="center"></td>
+		</tr>
+		<tr>
+			<td align="center">Fecha de Nacimiento</td>
+			<td align="center">Ocupación</td>
+			<td align="center">Número de Contacto</td>
+		</tr>
+		<tr>
+			<td th:text="${mat.pago.apoderado.fechanac}" align="center"></td>
+			<td th:text="${mat.pago.apoderado.ocupacion}" align="center"></td>
+			<td th:text="${mat.pago.apoderado.telefono}" align="center"></td>
+		</tr>
+	</table>
+	<table style="font-size: 18px;width: 50%;">
+		<tr>
+			<td><b>Fecha de la Impresión:</b></td>
+			<td th:text="${#temporals.format(java8Instant, 'dd-MM-yyyy HH:mm:ss')}"></td>
+		</tr>
+	</table>
+</body>
+</html>

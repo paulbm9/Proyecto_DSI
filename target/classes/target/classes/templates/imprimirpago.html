@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Formato de Impresion</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" media="all">
+</head>
+<body onload="window.print()">
+	<h1 align="center">Institución Educativa Benjamin Franklin</h1>
+	<div id="company" class="clearfix">
+		<div>Av. Malecón Checa 3777, San Juan de Lurigancho 15457</div>
+		<div>San Juan de Lurigancho-Lima-Lima</div>
+		<div>3860396</div>
+		<div>iepbenjaminbranklin@outlook.com</div>
+	</div><br>
+	<h2 align="center">COMPROBANTE DE PAGO</h2>
+	<section class="invoice">
+	<table th:each="pago:${listaPago}" style="font-size: 16px;width: 50%;" class="sinborde">
+		<tr>
+			<td><b>Fecha de Operación:</b></td>
+			<td class="service" th:text="${pago.fechaoperacion}"></td>
+		</tr>
+		<tr>
+			<td><b>Pago realizado por:</b></td>
+			<td class="service" th:text="${#strings.concat(pago.apoderado.nombre,' ',pago.apoderado.apepat,
+				' ',pago.apoderado.apemat)}"></td>
+		</tr>
+		<tr>
+			<td><b>Pago realizado a nombre de:</b></td>
+			<td class="service" th:text="${#strings.concat(pago.estudiante.nombre,' ',pago.estudiante.apepat,
+				' ',pago.estudiante.apepat)}"></td>
+		</tr>
+		<tr>
+			<td><b>Descripción del Pago:</b></td>
+			<td class="service" th:text="${pago.concepto.nomconcepto}"></td>
+		</tr>
+		<tr>
+			<td><b>Importe del Pago:</b></td>
+			<td class="service" th:text="${#strings.concat('S/.',' ',pago.monto)}"></td>
+		</tr>
+	</table><br>
+	<table th:each="pago:${listaPago}" style="font-size: 16px;width: 50%;">
+		<tr>
+			<td><b>Pago recepcionado por:</b></td>
+			<td class="service" th:text="${#strings.concat(pago.cajero.nombre,' ',pago.cajero.apepat,
+			' ',pago.cajero.apemat)}"></td>
+		</tr>
+		<tr>
+			<td><b>Fecha de la Impresión:</b></td>
+			<td th:text="${#temporals.format(java8Instant, 'dd-MM-yyyy HH:mm:ss')}"></td>
+		</tr>
+	</table>
+	</section>
+</body>
+</html>
